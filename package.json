@@ -2,8 +2,7 @@
   "name": "team-profile-generator",
   "version": "1.0.0",
   "description": "take in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person\u001b[1~\u001b[A\u001b[1~\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[4~\u001b[1~\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C\u001b[C\u001b[3~\u001b[B\u001b[B\u001b[B\u001b[C",
-  "exports": "./index.js",
-  "type": "module",
+  "main": "index.js",
   "directories": {
     "lib": "lib"
   },
@@ -27,11 +26,11 @@
     "url": "https://github.com/essexgit/Team-Profile-Generator/issues"
   },
   "homepage": "https://github.com/essexgit/Team-Profile-Generator#readme",
-  "dependencies": {
-    "inquirer": "^9.1.4"
-  },
   "devDependencies": {
     "@types/node": "^18.14.1",
     "jest": "^29.4.3"
+  },
+  "dependencies": {
+    "inquirer": "^6.5.0"
   }
 }
