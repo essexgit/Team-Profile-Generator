@@ -2,16 +2,18 @@ import Manager from "./lib/Manager.js";
 import Engineer from "./lib/Engineer.js";
 import Intern from "./lib/Intern.js";
 import inquirer from "inquirer";
-import path from "path";
-import fs from "fs";
+import fs from "node:fs";
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 
-// const OUTPUT_DIR = path.resolve(__dirname, "output");
-// const outputPath = path.join(OUTPUT_DIR, "team.html");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 // import render from "./src/page-template.js";
-// import generateHTML from "./src/generateHTML.js";
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
 // create unique reference
 function uniqueID() {
     return crypto.randomUUID();
@@ -90,7 +92,9 @@ function Finish() {
 }
 
 function displayMenuAnswers(data) {
-    if (data.menu === "Finish") { Finish(); }
+    if (data.menu === "Finish") {
+        Finish();
+    }
     console.log(data.menu);
 }
 menuQuestion();
