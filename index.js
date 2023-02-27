@@ -4,31 +4,22 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const teamArray = [];
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-// create unique reference
-function uniqueID() {
-    return crypto.randomUUID();
-}
-
 function generateManager() {
-    const newMan1 = new Manager();
     inquirer.prompt([
         nameQuestion,
         IDQuestion,
         emailQuestion,
         officeQuestion,
     ]).then((answer) => {
-        newMan1.name = answer.name;
-        newMan1.id = answer.id;
-        newMan1.email = answer.email;
-        newMan1.officeNumber = answer.officeNumber;
-        newMan1.role = "Manager";
-        console.log(newMan1);
+        let manager = new Manager(answer.name, answer.id, answer.email, answer.officeNumber);
+        teamArray.push(manager);
         menuQuestion();
     });
 };
@@ -40,12 +31,8 @@ function generateIntern() {
         emailQuestion,
         schoolQuestion,
     ]).then((answer) => {
-        newInt1.name = answer.name;
-        newInt1.id = answer.id;
-        newInt1.email = answer.email;
-        newInt1.school = answer.school;
-        newInt1.role = "Engineer";
-        console.log(newInt1);
+        let intern = new Intern(answer.name, answer.id, answer.email, answer.school);
+        teamArray.push(intern);
         menuQuestion();
     });
 };
@@ -57,12 +44,8 @@ function generateEngineer() {
         emailQuestion,
         gitQuestion,
     ]).then((answer) => {
-        newEngin1.name = answer.name;
-        newEngin1.id = answer.id;
-        newEngin1.email = answer.email;
-        newEngin1.github = answer.github;
-        newEngin1.role = "Engineer";
-        console.log(newEngin1);
+        let engineer = new Engineer(answer.name, answer.id, answer.email, answer.github);
+        teamArray.push(engineer);
         menuQuestion();
     });
 };
@@ -117,18 +100,6 @@ function menuQuestion() {
     });
 }
 
-function Finish() {
-    buildPage();
-    console.log("the end");
-}
-const buildPage = () => {
-    const testArray = [];
-    testArray.push(newMan1);
-
-    console.log(render(testArray));
-};
-
-
 function displayMenuAnswers(data) {
     if (data.menu === "Engineer") {
         generateEngineer();
@@ -138,4 +109,14 @@ function displayMenuAnswers(data) {
         Finish();
     }
 }
+
+function Finish() {
+    buildPage();
+}
+const buildPage = () => {
+    fs.writeFile("./output/team.html", render(teamArray), (err) =>
+        err ? console.log(err) : console.log('Success!')
+    );
+};
+
 generateManager();
